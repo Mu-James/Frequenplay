@@ -1,5 +1,6 @@
 from tools import extract as e
 from tools import ytOperationalApi
+from tools import search as s
 
 class frequenplayGame:
     def __init__(self, yt_video_url: str, date_created: str, name: str):
@@ -8,4 +9,5 @@ class frequenplayGame:
         self.date_created = date_created
         self.name = name
 
-        self._replay_timestamps = ytOperationalApi().generate_most_replayed(self.yt_video_id)
+        self._replay_timestamps = ytOperationalApi().generate_timestamp_intensities(self.yt_video_id)
+        self._most_replayed = s.mostReplayedSearch(self._replay_timestamps)
