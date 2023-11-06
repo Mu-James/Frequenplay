@@ -7,13 +7,13 @@ class ytOperationalApi:
         self._api_key = api_key
         self._instance = instance
 
-    def generate_most_replayed(self, video_id: str, instance: str) -> list[dict]:
+    def generate_most_replayed(self, video_id: str) -> list[dict]:
         """
         Returns a list of 100 dictionary entries each containing 2 keys:
         startMillis is the timestamp, in miliseconds, when a replay occurred.
         intensityScoreNormalized is the normalized score of all replays.
         """
-        with urllib.request.urlopen(instance + "/videos?part=mostReplayed&id=" + video_id) as request:
+        with urllib.request.urlopen(self._instance + "/videos?part=mostReplayed&id=" + video_id) as request:
             data = json.load(request)
             return data["items"][0]["mostReplayed"]['markers']
 
