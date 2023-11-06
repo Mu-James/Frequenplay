@@ -7,7 +7,7 @@ class ytOperationalApi:
         self._api_key = api_key
         self._instance = instance
 
-    def generate_most_replayed(self, video_id: str) -> list[dict]:
+    def generate_timestamp_intensities(self, video_id: str) -> list[dict]:
         """
         Returns a list of 100 dictionary entries each containing 2 keys:
         startMillis is the timestamp, in miliseconds, when a replay occurred.
@@ -25,4 +25,4 @@ class ytOperationalApi:
     
 if __name__ == "__main__":
     ytOA = ytOperationalApi()
-    print(ytOA.generate_most_replayed("dQw4w9WgXcQ", YTLEMNOSLIFEINSTANCE))
+    print(ytOA.generate_timestamp_intensities("dQw4w9WgXcQ", YTLEMNOSLIFEINSTANCE))
