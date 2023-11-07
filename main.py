@@ -1,7 +1,6 @@
 import sys, os
 sys.path.append(os.path.abspath("frequenplay"))
 
-print(sys.path)
 from frequenplay_game import frequenplayGame
 
 if __name__ == "__main__":
