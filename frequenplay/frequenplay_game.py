@@ -15,6 +15,5 @@ class frequenplayGame:
     def print_time(self):
         print(self._most_replayed)
 
-if __name__ == "__main__":
-    fg = frequenplayGame("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "11/05/2023", "Troll")
-    fg.print_time()
+    def print_timestamps(self):
+        print(self._replay_timestamps)
