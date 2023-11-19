@@ -2,6 +2,8 @@ from extract import extract_youtube_video_id_from_url
 from yt_operational_api import ytOperationalApi
 from search import mostReplayedSearch
 
+from collections import defaultdict
+
 class frequenplayGame:
     def __init__(self, yt_video_url: str, date_created: str, name: str):
         self.yt_video_url = yt_video_url
@@ -17,3 +19,7 @@ class frequenplayGame:
 
     def _print_replay_timestamps(self):
         print(self._replay_timestamps)
+
+class frequenplayGameMC(frequenplayGame):
+    def __init__(self, yt_video_str: str, date_created: str, name: str):
+        self.answer_bank = defaultdict(None)
