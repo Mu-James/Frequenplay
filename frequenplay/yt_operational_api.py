@@ -1,9 +1,10 @@
 import urllib.request, json
 
 YTLEMNOSLIFEINSTANCE = "https://yt.lemnoslife.com/"
+LOCALHOST = "http://localhost/YouTube-operational-API/"
 
 class ytOperationalApi:
-    def __init__(self, api_key="noKey", instance=YTLEMNOSLIFEINSTANCE):
+    def __init__(self, api_key="noKey", instance=LOCALHOST):
         self._api_key = api_key
         self._instance = instance
 
@@ -22,7 +23,3 @@ class ytOperationalApi:
     
     def get_instance(self):
         return self._instance
-    
-if __name__ == "__main__":
-    ytOA = ytOperationalApi()
-    print(ytOA.generate_timestamp_intensities("dQw4w9WgXcQ"))
