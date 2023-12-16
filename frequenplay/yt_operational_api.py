@@ -24,5 +24,5 @@ class ytOperationalApi:
         return self._instance
     
 if __name__ == "__main__":
-    ytOA = ytOperationalApi()
-    print(ytOA.generate_timestamp_intensities("dQw4w9WgXcQ", YTLEMNOSLIFEINSTANCE))
+    ytOA = ytOperationalApi(YTLEMNOSLIFEINSTANCE)
+    print(ytOA.generate_timestamp_intensities("dQw4w9WgXcQ"))
