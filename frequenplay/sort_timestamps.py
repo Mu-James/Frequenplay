@@ -1,6 +1,6 @@
 from time_conversion import convertMilisTimestamp
 
-def sortTimestamps(timestamp_intesnties: list[dict]) -> tuple(tuple(list, int), tuple(list, int)):
+def sortTimestamps(timestamp_intesnties: list[dict]) -> ((list, int), (list, int)):
     """
     Returns a tuple of two tuples each with a list of timedelta objects and the number of entries.
     The first list contains most replayed timestamps. A timestamps is the most replayed if it has a normalized intensity score equal to 1.
