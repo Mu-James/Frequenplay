@@ -4,6 +4,10 @@ from frequenplay.sort_timestamps import sortTimestamps
 
 import random as r
 
+class FrequenplayGameError(Exception):
+    def __init__(self, message):
+        super().__init__(message)
+
 class frequenplayGame:
     def __init__(self, yt_video_url: str, date_created: str, name: str):
         self.yt_video_url = yt_video_url
@@ -40,6 +44,24 @@ class frequenplayGameMC(frequenplayGame):
     def _print_answer_bank(self):
         print(self.answer_bank)
 
+    def enable_multiple_answers(self):
+        if self.has_multiple_answers == True: 
+            if self.uses_multiple_answers == False:
+                self.uses_multiple_answers = True
+            else:
+                raise FrequenplayGameError("multiple answers already enabled for current instance")
+        else:
+            raise FrequenplayGameError("current instance does not contain multiple answers")
+        
+    def disable_multiple_answers(self):
+        if self.has_multiple_answers == True:
+            if self.uses_multiple_answers == True:
+                self.uses_multiple_answers = False
+            else:
+                raise FrequenplayGameError("multiple answers already disabled for current instance")
+        else:
+            raise FrequenplayGameError("current instance does not contain multiple answers")
+
     def generate_random_answer_bank(self, num_choices: int):
         if (self.uses_multiple_answers == False and num_choices <=  self.num_total_timestamp_entries):
             self.answer_bank[self._most_replayed_timestamps[0]] = True
@@ -55,5 +77,5 @@ class frequenplayGameMC(frequenplayGame):
                 choice = r.choice(self._other_timestamps)
                 self.answer_bank[choice] = False
         else:
-            raise Exception("UnexpectedError: generate_random_answer_bank")           
+            raise FrequenplayGameError("generate_random_answer_bank did not work correctly")           
             
