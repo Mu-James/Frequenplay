@@ -1,6 +1,6 @@
 from extract import extract_youtube_video_id_from_url
 from yt_operational_api import ytOperationalApi
-from search import mostReplayedSearch
+from frequenplay.sort_timestamps import sortTimestamps
 
 from collections import defaultdict
 
@@ -12,7 +12,9 @@ class frequenplayGame:
         self.name = name
 
         self._replay_timestamps = ytOperationalApi().generate_timestamp_intensities(self.yt_video_id)
-        self._most_replayed = mostReplayedSearch(self._replay_timestamps)
+        self._sorted_timestamps = sortTimestamps(self._replay_timestamps)
+        self._most_replayed = self._sorted_timestamps[0]
+        self._other_timestamps = self._sorted_timestamps[1]
 
     def _print_most_replayed(self):
         print(self._most_replayed)
