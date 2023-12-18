@@ -13,11 +13,15 @@ class frequenplayGame:
 
         self._replay_timestamps = ytOperationalApi().generate_timestamp_intensities(self.yt_video_id)
         self._sorted_timestamps = sortTimestamps(self._replay_timestamps)
-        self._most_replayed = self._sorted_timestamps[0]
-        self._other_timestamps = self._sorted_timestamps[1]
+
+        self._most_replayed_timestamps = self._sorted_timestamps[0][0]
+        self._other_timestamps = self._sorted_timestamps[1][0]
+
+        self.num_mr_entries = self._sorted_timestamps[0][1]
+        self.num_o_entries = self._sorted_timestamps[1][1]
 
     def _print_most_replayed(self):
-        print(self._most_replayed)
+        print(self._most_replayed_timestamps)
 
     def _print_replay_timestamps(self):
         print(self._replay_timestamps)
