@@ -3,6 +3,7 @@ from yt_operational_api import ytOperationalApi
 from frequenplay.sort_timestamps import sortTimestamps
 
 from collections import defaultdict
+import random as r
 
 class frequenplayGame:
     def __init__(self, yt_video_url: str, date_created: str, name: str):
@@ -35,3 +36,10 @@ class frequenplayGameMC(frequenplayGame):
             self.has_multiple_answers = True
         self.uses_multiple_answers = False
         self.answer_bank = defaultdict(None)
+
+    def generate_random_answer_bank(self, num_choices: int):
+        if (self.uses_multiple_answers == False and num_choices <= self.num_o_entries + self.num_mr_entries):
+            for i in range(num_choices):
+                choice = r.choice(self._other_timestamps)
+                self.answer_bank[choice] = False
+            self.answer_bank[self._most_replayed_timestamps[0]] = True
