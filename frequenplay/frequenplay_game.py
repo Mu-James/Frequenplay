@@ -77,5 +77,7 @@ class frequenplayGameMC(frequenplayGame):
                 choice = r.choice(self._other_timestamps)
                 self.answer_bank[choice] = False
         else:
-            raise FrequenplayGameError("generate_random_answer_bank did not work correctly")           
-            
+            raise FrequenplayGameError("generate_random_answer_bank did not work correctly") 
+
+    def check_answer(self, answer):
+        return self.answer_bank[answer]          
