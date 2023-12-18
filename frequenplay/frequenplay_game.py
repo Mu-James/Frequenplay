@@ -2,7 +2,6 @@ from extract import extract_youtube_video_id_from_url
 from yt_operational_api import ytOperationalApi
 from frequenplay.sort_timestamps import sortTimestamps
 
-from collections import defaultdict
 import random as r
 
 class frequenplayGame:
@@ -32,10 +31,13 @@ class frequenplayGameMC(frequenplayGame):
         super().__init__(yt_video_str, date_created, name)
 
         self.has_multiple_answers = False
-        if (len(self._most_replayed) < 1):
+        if self.num_mr_entries < 1:
             self.has_multiple_answers = True
         self.uses_multiple_answers = False
-        self.answer_bank = defaultdict(None)
+        self.answer_bank = {}
+
+    def _print_answer_bank(self):
+        print(self.answer_bank)
 
     def generate_random_answer_bank(self, num_choices: int):
         if (self.uses_multiple_answers == False and num_choices <= self.num_o_entries + self.num_mr_entries):
