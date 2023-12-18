@@ -49,7 +49,7 @@ class frequenplayGameMC(frequenplayGame):
             if self.uses_multiple_answers == False:
                 self.uses_multiple_answers = True
             else:
-                raise FrequenplayGameError("multiple answers already enabled for current instance")
+                raise FrequenplayGameError("current instance has multiple answers enabled")
         else:
             raise FrequenplayGameError("current instance does not contain multiple answers")
         
@@ -58,7 +58,7 @@ class frequenplayGameMC(frequenplayGame):
             if self.uses_multiple_answers == True:
                 self.uses_multiple_answers = False
             else:
-                raise FrequenplayGameError("multiple answers already disabled for current instance")
+                raise FrequenplayGameError("current instance has multiple answers disabled")
         else:
             raise FrequenplayGameError("current instance does not contain multiple answers")
 
