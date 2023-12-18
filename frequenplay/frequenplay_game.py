@@ -19,6 +19,7 @@ class frequenplayGame:
 
         self.num_mr_entries = self._sorted_timestamps[0][1]
         self.num_o_entries = self._sorted_timestamps[1][1]
+        self.num_total_timestamp_entries = self.num_mr_entries + self.num_o_entries
 
     def _print_most_replayed(self):
         print(self._most_replayed_timestamps)
@@ -40,8 +41,19 @@ class frequenplayGameMC(frequenplayGame):
         print(self.answer_bank)
 
     def generate_random_answer_bank(self, num_choices: int):
-        if (self.uses_multiple_answers == False and num_choices <= self.num_o_entries + self.num_mr_entries):
+        if (self.uses_multiple_answers == False and num_choices <=  self.num_total_timestamp_entries):
+            self.answer_bank[self._most_replayed_timestamps[0]] = True
             for i in range(num_choices):
                 choice = r.choice(self._other_timestamps)
                 self.answer_bank[choice] = False
-            self.answer_bank[self._most_replayed_timestamps[0]] = True
+        elif (self.uses_multiple_answers == True and num_choices <=  self.num_total_timestamp_entries):
+            num_correct_answers = r.randrange(self.num_mr_entries)
+            for i in range(num_correct_answers):
+                choice = r.choice(self._most_replayed_timestamps)
+                self.answer_bank[choice] = True
+            for i in range(num_choices - num_correct_answers):
+                choice = r.choice(self._other_timestamps)
+                self.answer_bank[choice] = False
+        else:
+            raise Exception("UnexpectedError: generate_random_answer_bank")           
+            
