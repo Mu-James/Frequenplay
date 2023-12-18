@@ -22,4 +22,10 @@ class frequenplayGame:
 
 class frequenplayGameMC(frequenplayGame):
     def __init__(self, yt_video_str: str, date_created: str, name: str):
+        super().__init__(yt_video_str, date_created, name)
+
+        self.possible_multiple_answers = False
+        if (len(self._most_replayed) < 1):
+            self.possible_multiple_answers = True
+        self.has_multiple_answers = False
         self.answer_bank = defaultdict(None)
