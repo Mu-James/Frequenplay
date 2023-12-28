@@ -17,12 +17,12 @@ class User(models.Model):
     )
 
     email = models.EmailField(
-        unique = True
+        unique = True,
         help_text = "Enter a unique Email."
     )
 
     password = models.CharField(
-        max_length = 100
+        max_length = 100,
         help_text = "Enter a Password."
     )
 
@@ -42,7 +42,7 @@ class MC_Game(models.Model):
 
     game_id = models.UUIDField(
         primary_key = True,
-        default = uuid.uuid4
+        default = uuid.uuid4,
         help_text = "Unique Game ID."
     )
 
