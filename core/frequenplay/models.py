@@ -3,38 +3,6 @@ from django.urls import reverse
 import uuid
 
 # Create your models here.
-class User(models.Model):
-    uid = models.UUIDField(
-        primary_key = True,
-        default = uuid.uuid4,
-        help_text = "Unique User ID."
-    )
-
-    username = models.CharField(
-        max_length = 25,
-        unique = True,
-        help_text = "Enter a unique Username."
-    )
-
-    email = models.EmailField(
-        unique = True,
-        help_text = "Enter a unique Email."
-    )
-
-    password = models.CharField(
-        max_length = 100,
-        help_text = "Enter a Password."
-    )
-
-    #Might need a Field for User created Games
-
-    def __str__(self):
-        return "User: " + self.username + "." + self.uid
-    
-    def get_absolute_url(self):
-        """Returns the url to access a particular genre instance."""
-        return reverse('user-detail', args=[str(self.id)])
-
 class MC_Game(models.Model):
     """Model representing a Game instance."""
 
