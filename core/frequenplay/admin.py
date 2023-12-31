@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import User, MC_Game
+from .models import MultipleChoiceGame
 
 # Register your models here.
-admin.site.register(User)
-admin.site.register(MC_Game)
+admin.site.register(MultipleChoiceGame)

@@ -1,12 +1,13 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 import uuid
 
 # Create your models here.
-class MC_Game(models.Model):
+class MultipleChoiceGame(models.Model):
     """Model representing a Game instance."""
 
-    user = models.ForeignKey(User, on_delete = models.RESTRICT, null = True)
+    user = models.ForeignKey(get_user_model() , on_delete = models.RESTRICT, null = True)
 
     game_id = models.UUIDField(
         primary_key = True,
