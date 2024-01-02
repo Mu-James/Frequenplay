@@ -17,23 +17,15 @@ Including another URLconf
 from frequenplay import views
 from django.contrib import admin
 from django.urls import path
+from django.urls import include
+from django.views.generic import RedirectView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
-
-from django.urls import include
-
-urlpatterns += [
     path('frequenplay/', include('frequenplay.urls')),
-]
-
-from django.views.generic import RedirectView
-urlpatterns += [
     path('', RedirectView.as_view(url='frequenplay/', permanent=True)),
 ]
-
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
