@@ -17,10 +17,22 @@ def index(request):
 
 def game_read(request, game_id):
     MCG = get_object_or_404(MultipleChoiceGame, pk = game_id)
-    return render(request, "game/read/read.html", {"MCG": MCG})
+
+    context = {
+        "MCG" : MCG,
+        "game_id" : game_id,
+    }
+
+    return render(request, "game/read/read.html", context=context)
 
 def game_play(request, game_id):
-    return HttpResponse("Game Play View." % game_id)
+    MCG = get_object_or_404(MultipleChoiceGame, pk = game_id)
+
+    context = {
+        "MCG_name" : MCG.name,
+        "youtube_id" : MCG.youtube_video_id,
+    }
+    return render(request, "game/play/play.html", context=context)
 
 def game_results(request, game_id) :
     return HttpResponse("Game Results View." % game_id)
