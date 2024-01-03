@@ -42,7 +42,7 @@ class MultipleChoiceGame(models.Model):
 
     def __str__(self):
         """String for representing the Game object."""
-        return self.name + " with game ID: " + self.game_id
+        return self.name + " with game ID: " + str(self.game_id)
     
     def get_absolute_url(self):
         """Returns the url to access a particular genre instance."""
