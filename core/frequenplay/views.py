@@ -6,9 +6,11 @@ def index(request):
     """View function for home page of site"""
     """Game Selection on index page"""
     num_games = MultipleChoiceGame.objects.all().count()
+    game_list = MultipleChoiceGame.objects.order_by("-pub_date")
 
     context = {
-        "num_games" : num_games
+        "num_games" : num_games,
+        "game_list" : game_list
     }
 
     return render(request, 'index.html', context=context)
