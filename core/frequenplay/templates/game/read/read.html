@@ -2,7 +2,7 @@
 
 {% block content %}
     {{ MCG }}
-    <a = href="/frequenplay/{{ game_id }}/play">
+    <a = href="{% url 'play' game_id %}">
         <button>Play</button>
     </a>
 
