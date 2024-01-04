@@ -33,7 +33,8 @@ def game_play(request, game_id):
 
     context = {
         "MCG_name" : MCG.name,
-        "youtube_id" : MCG.youtube_video_id,
+        "MCG_youtube_id" : MCG.youtube_video_id,
+        "MCG_pub_date" : MCG.pub_date
     }
     return render(request, "game/play/play.html", context=context)
 
