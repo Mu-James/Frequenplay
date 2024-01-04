@@ -1,10 +1,8 @@
 import sys, os
 sys.path.append(os.path.abspath("frequenplay/functions"))
-print(sys.path)
-import frequenplay_game as fg
+
 from django.shortcuts import get_object_or_404, render
 from .models import MultipleChoiceGame
-
 
 # Create your views here.
 def index(request):
