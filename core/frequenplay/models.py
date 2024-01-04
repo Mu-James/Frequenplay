@@ -1,7 +1,13 @@
+import sys, os
+sys.path.append(os.path.abspath("frequenplay/functions"))
+
+import frequenplay_game as fg
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 import uuid
+
+NUM_WRONG_CHOICES = 3
 
 # Create your models here.
 class MultipleChoiceGame(models.Model):
@@ -40,10 +46,28 @@ class MultipleChoiceGame(models.Model):
         help_text = "The number of times this Game has been played."
     )
 
+    def save(self, *args, **kwargs):
+        frequenplayGameInstance = fg.frequenplayGameMC(self.youtube_video_url, self.pub_date, self.name)
+        frequenplayGameInstance.generate_random_answer_bank(NUM_WRONG_CHOICES)
+        frequenplayGameInstanceAnswerBank = frequenplayGameInstance.get_answer_bank()
+        for choice in frequenplayGameInstanceAnswerBank:
+            c = Choice(game=self, timestamp=str(choice), answer=frequenplayGameInstanceAnswerBank[choice])
+            c.save()
+        super(MultipleChoiceGame, self).save(*args, **kwargs)
+
     def __str__(self):
         """String for representing the Game object."""
-        return self.name + " with game ID: " + str(self.game_id)
+        return self.name + " with Game ID: " + str(self.game_id)
     
     def get_absolute_url(self):
-        """Returns the url to access a particular genre instance."""
+        """Returns the url to access a particular game instance."""
         return reverse('game-detail', args=[str(self.id)])
+    
+class Choice(models.Model):
+    game = models.ForeignKey(MultipleChoiceGame, on_delete = models.CASCADE)
+
+    timestamp = models.TimeField()
+    answer = models.BooleanField()
+
+    def __str__(self):
+        return f"{'Correct' if self.answer else 'Inccorect'} Timestamp: {self.timestamp} for {self.game}"
