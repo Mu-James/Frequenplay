@@ -80,4 +80,7 @@ class frequenplayGameMC(frequenplayGame):
             raise FrequenplayGameError("generate_random_answer_bank did not work correctly") 
 
     def check_answer(self, answer):
-        return self.answer_bank[answer]          
+        return self.answer_bank[answer]
+
+    def get_answer_bank(self):
+        return self.answer_bank         
