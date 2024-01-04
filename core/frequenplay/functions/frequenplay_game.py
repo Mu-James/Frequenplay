@@ -1,6 +1,6 @@
 from extract import extract_youtube_video_id_from_url
 from yt_operational_api import ytOperationalApi
-from frequenplay.sort_timestamps import sortTimestamps
+from sort_timestamps import sortTimestamps
 
 import random as r
 
