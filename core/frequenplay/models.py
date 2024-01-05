@@ -51,7 +51,7 @@ class MultipleChoiceGame(models.Model):
         frequenplayGameInstance.generate_random_answer_bank(NUM_WRONG_CHOICES)
         frequenplayGameInstanceAnswerBank = frequenplayGameInstance.get_answer_bank()
         for choice in frequenplayGameInstanceAnswerBank:
-            c = Choice(game=self, timestamp=str(choice), answer=frequenplayGameInstanceAnswerBank[choice])
+            c = Choice(game=self, timestamp=choice, answer=frequenplayGameInstanceAnswerBank[choice])
             c.save()
         super(MultipleChoiceGame, self).save(*args, **kwargs)
 
@@ -66,7 +66,7 @@ class MultipleChoiceGame(models.Model):
 class Choice(models.Model):
     game = models.ForeignKey(MultipleChoiceGame, on_delete = models.CASCADE)
 
-    timestamp = models.TimeField()
+    timestamp = models.DurationField()
     answer = models.BooleanField()
 
     def __str__(self):
