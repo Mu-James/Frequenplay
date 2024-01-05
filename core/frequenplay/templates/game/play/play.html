@@ -10,7 +10,13 @@
     <h2>
         As of {{MCG_pub_date}}, what is the most replayed timestamp?
     </h2>
-    <ul>
-    </ul>
+    <div class="container">
+        <form> 
+            {% csrf_token %}
+            {{ MCG_choice_form }}
+            <button type="submit" class="btn btn-custom">Submit</button>
+        </form>
+    </div>
+
 
 {% endblock %}
