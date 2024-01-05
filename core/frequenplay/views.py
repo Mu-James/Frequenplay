@@ -1,8 +1,9 @@
 import sys, os
 sys.path.append(os.path.abspath("frequenplay/functions"))
+import random as r
 
 from django.shortcuts import get_object_or_404, render
-from .models import MultipleChoiceGame
+from .models import MultipleChoiceGame, Choice
 
 # Create your views here.
 def index(request):
@@ -30,11 +31,14 @@ def game_read(request, game_id):
 
 def game_play(request, game_id):
     MCG = get_object_or_404(MultipleChoiceGame, pk = game_id)
+    MCG_choice_list = Choice.objects.filter(game=MCG)
+    #r.shuffle(list(MCG_choice_list))
 
     context = {
         "MCG_name" : MCG.name,
         "MCG_youtube_id" : MCG.youtube_video_id,
-        "MCG_pub_date" : MCG.pub_date
+        "MCG_pub_date" : MCG.pub_date,
+        "MCG_choice_list" : MCG_choice_list,
     }
     return render(request, "game/play/play.html", context=context)
 
