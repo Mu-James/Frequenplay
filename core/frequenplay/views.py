@@ -23,6 +23,7 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 def game_read(request, game_id):
+    """Function to show information of a game before playing"""
     MCG = get_object_or_404(MultipleChoiceGame, pk = game_id)
 
     context = {
