@@ -34,6 +34,7 @@ def game_read(request, game_id):
     return render(request, "game/read/read.html", context=context)
 
 def game_play(request, game_id):
+    """Function to show choices for players to pick and submit"""
     MCG = get_object_or_404(MultipleChoiceGame, pk = game_id)
     MCG_choice_list = Choice.objects.filter(game=MCG)
     #r.shuffle(list(MCG_choice_list))
