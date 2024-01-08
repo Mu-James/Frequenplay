@@ -49,4 +49,5 @@ def game_play(request, game_id):
     return render(request, "game/play/play.html", context=context)
 
 def game_results(request, game_id) :
+    """Function to show result of player's choice after submit"""
     return HttpResponse("Game Results View." % game_id)
